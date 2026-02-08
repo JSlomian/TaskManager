@@ -4,7 +4,6 @@ overblog_graphql:
             query: Query
         mappings:
             types:
-                -
-                    type: yaml
+                -   type: yaml
                     dir: "%kernel.project_dir%/config/graphql/types"
                     suffix: null

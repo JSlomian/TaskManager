@@ -17,6 +17,7 @@
         "symfony/dotenv": "7.4.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "7.4.*",
+        "symfony/http-client": "7.4.*",
         "symfony/messenger": "7.4.*",
         "symfony/runtime": "7.4.*",
         "symfony/yaml": "7.4.*"
@@ -72,6 +73,7 @@
         }
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.93",
         "symfony/maker-bundle": "^1.65"
     }
 }
