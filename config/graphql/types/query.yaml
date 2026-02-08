@@ -5,3 +5,6 @@ Query:
             users:
                 type: "[User!]!"
                 resolve: "@=service('graphql.query_resolver').users()"
+            me:
+                type: "User!"
+                resolve: "@=service('graphql.query_resolver').me()"

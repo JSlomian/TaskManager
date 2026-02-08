@@ -14,4 +14,13 @@ final class QueryResolver
             ],
         ];
     }
+
+    public function me(): array
+    {
+        return [
+            'id' => 1,
+            'name' => 'John Doe',
+            'email' => 'john.doe@gmail.com',
+        ];
+    }
 }
