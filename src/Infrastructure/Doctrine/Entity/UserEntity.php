@@ -9,8 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 class UserEntity
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'string',length: 36)]
-    private string $id;
+    #[ORM\Column(type: 'integer')]
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $name;
@@ -18,11 +18,12 @@ class UserEntity
     #[ORM\Column(type: 'string', length: 255)]
     private string $email;
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
-    public function setId(string $id): static
+
+    public function setId(int $id): static
     {
         $this->id = $id;
 
