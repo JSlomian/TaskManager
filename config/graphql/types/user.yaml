@@ -6,5 +6,7 @@ User:
                 type: "ID!"
             name:
                 type: "String!"
+            username:
+                type: "String!"
             email:
                 type: "String!"

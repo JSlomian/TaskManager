@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Doctrine\Entity;
 
+use App\Domain\Model\User;
 use App\Infrastructure\Doctrine\Repository\UserEntityRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,6 +17,9 @@ class UserEntity
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $name;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $username;
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $email;
@@ -42,6 +48,18 @@ class UserEntity
         return $this;
     }
 
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): static
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
     public function getEmail(): string
     {
         return $this->email;
@@ -52,5 +70,17 @@ class UserEntity
         $this->email = $email;
 
         return $this;
+    }
+
+    public static function fromDomain(User $user): self
+    {
+        $entity = new self();
+        $entity
+            ->setId($user->id())
+            ->setName($user->name())
+            ->setUsername($user->username())
+            ->setEmail($user->email());
+
+        return $entity;
     }
 }

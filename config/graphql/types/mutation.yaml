@@ -1,0 +1,7 @@
+Mutation:
+    type: object
+    config:
+        fields:
+            importUsers:
+                type: "Boolean!"
+                resolve: "@=service('graphql.mutation_resolver').importUsers()"

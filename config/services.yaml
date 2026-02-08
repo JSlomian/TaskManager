@@ -25,5 +25,8 @@ services:
     graphql.query_resolver:
         alias: App\Infrastructure\GraphQL\Resolver\QueryResolver
         public: true
+    graphql.mutation_resolver:
+        alias: App\Infrastructure\GraphQL\Resolver\MutationResolver
+        public: true
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
