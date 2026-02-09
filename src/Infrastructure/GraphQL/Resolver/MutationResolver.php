@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\GraphQL\Resolver;
 
-use App\Application\Command\LoginUserCommand;
 use App\Application\Command\TaskCreateCommand;
 use App\Application\Command\TaskUpdateCommand;
 use App\Application\Command\UsersImportCommand;
@@ -32,7 +31,17 @@ final readonly class MutationResolver
 
     public function login(int $userId): bool
     {
-        $this->messageBus->dispatch(new LoginUserCommand($userId));
+        $userEntity = $this->userRepository->find($userId);
+        $session = $this->requestStack->getSession();
+        $session->set('user_id', $userEntity->getId());
+
+        return true;
+    }
+
+    public function logout(): bool
+    {
+        $session = $this->requestStack->getSession();
+        $session->set('user_id', null);
 
         return true;
     }
