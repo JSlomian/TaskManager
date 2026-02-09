@@ -38,4 +38,15 @@ class UserEntityRepository extends ServiceEntityRepository
         }
         $em->flush();
     }
+
+    public function findOneAsArray(int $userId): ?array
+    {
+        $result = $this->createQueryBuilder('u')
+            ->andWhere('u.id = :userId')
+            ->setParameter('userId', $userId)
+            ->getQuery()
+            ->getArrayResult();
+
+        return $result[0] ?? null;
+    }
 }

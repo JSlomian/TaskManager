@@ -30,7 +30,7 @@ final readonly class UsersImportHandler
          */
         $userObjects = [];
         foreach ($users as $userData) {
-            $userObjects[] = new User($userData['id'], $userData['name'], $userData['username'], $userData['email']);
+            $userObjects[] = User::create($userData['id'], $userData['name'], $userData['username'], $userData['email']);
         }
         $this->userEntityRepository->saveMany($userObjects);
     }

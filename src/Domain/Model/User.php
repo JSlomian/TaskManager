@@ -6,12 +6,17 @@ namespace App\Domain\Model;
 
 final readonly class User
 {
-    public function __construct(
+    private function __construct(
         private int $id,
         private string $name,
         private string $username,
         private string $email,
     ) {
+    }
+
+    public static function create($id, $name, $username, $email): self
+    {
+        return new self($id, $name, $username, $email);
     }
 
     public function id(): int
