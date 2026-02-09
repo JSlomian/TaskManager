@@ -1,6 +1,7 @@
 User:
     type: object
     config:
+        description: "User representation"
         fields:
             id:
                 type: "ID!"

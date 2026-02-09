@@ -5,3 +5,30 @@ Mutation:
             importUsers:
                 type: "Boolean!"
                 resolve: "@=service('graphql.mutation_resolver').importUsers()"
+            login:
+                type: "Boolean!"
+                args:
+                    userId:
+                        type: "Int!"
+                resolve: "@=service('graphql.mutation_resolver').login(args['userId'])"
+            logout:
+                type: "Boolean!"
+                resolve: "@=service('graphql.mutation_resolver').logout()"
+            taskCreate:
+                type: "Boolean!"
+                args:
+                    taskName:
+                        type: "String!"
+                    taskDescription:
+                        type: "String!"
+                    assignedUserId:
+                        type: "Int!"
+                resolve: "@=service('graphql.mutation_resolver').taskCreate(args)"
+            taskUpdate:
+                type: "Boolean!"
+                args:
+                    taskId:
+                        type: "Int!"
+                    taskStatus:
+                        type: "TaskStatusEnum!"
+                resolve: "@=service('graphql.mutation_resolver').taskUpdate(args)"

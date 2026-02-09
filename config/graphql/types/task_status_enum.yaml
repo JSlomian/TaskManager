@@ -1,0 +1,11 @@
+TaskStatusEnum:
+    type: enum
+    config:
+        description: "Task workflow status"
+        values:
+            TODO:
+                value: "todo"
+            IN_PROGRESS:
+                value: "in_progress"
+            DONE:
+                value: "done"

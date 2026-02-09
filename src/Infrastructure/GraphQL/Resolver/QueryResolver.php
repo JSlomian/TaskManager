@@ -4,12 +4,18 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\GraphQL\Resolver;
 
+use App\Infrastructure\Doctrine\Repository\TaskEntityRepository;
 use App\Infrastructure\Doctrine\Repository\UserEntityRepository;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Serializer\SerializerInterface;
 
-final class QueryResolver
+final readonly class QueryResolver
 {
-    public function __construct(private readonly UserEntityRepository $userEntityRepository)
-    {
+    public function __construct(
+        private UserEntityRepository $userEntityRepository,
+        private TaskEntityRepository $taskEntityRepository,
+        private RequestStack $requestStack,
+    ) {
     }
 
     public function users(): array
@@ -19,10 +25,26 @@ final class QueryResolver
 
     public function me(): array
     {
-        return [
-            'id' => 1,
-            'name' => 'John Doe',
-            'email' => 'john.doe@gmail.com',
-        ];
+        $session = $this->requestStack->getSession();
+        $userId = $session->get('user_id');
+        if (null === $userId) {
+            throw new \Exception('User not logged it');
+        }
+        $user = $this->userEntityRepository->findOneAsArray($userId);
+        if (null === $user) {
+            throw new \Exception('User not found');
+        }
+
+        return $user;
+    }
+
+    public function tasks(): array
+    {
+        return $this->taskEntityRepository->findAll();
+    }
+
+    public function tasksByUser(int $userId): array
+    {
+        return $this->taskEntityRepository->findByAssignedUser($userId);
     }
 }

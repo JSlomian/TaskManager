@@ -1,0 +1,17 @@
+Task:
+    type: object
+    config:
+        description: "Task representation"
+        fields:
+            id:
+                type: "Int!"
+            name:
+                type: "String!"
+            description:
+                type: "String!"
+            status:
+                type: "TaskStatusEnum!"
+            assignedUserId:
+                type: "Int!"
+            createdAt:
+                type: "DateTime!"

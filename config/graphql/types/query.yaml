@@ -3,8 +3,17 @@ Query:
     config:
         fields:
             users:
-                type: "[User!]!"
+                type: "[User!]"
                 resolve: "@=service('graphql.query_resolver').users()"
             me:
                 type: "User!"
                 resolve: "@=service('graphql.query_resolver').me()"
+            tasks:
+                type: "[Task!]"
+                resolve: "@=service('graphql.query_resolver').tasks()"
+            tasksByUser:
+                type: "[Task!]"
+                args:
+                    userId:
+                        type: "Int!"
+                resolve: "@=service('graphql.query_resolver').tasksByUser(args['userId'])"
