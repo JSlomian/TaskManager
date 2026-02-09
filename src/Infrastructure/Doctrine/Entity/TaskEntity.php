@@ -99,11 +99,13 @@ class TaskEntity
 
     public static function fromDomain(Task $task): self
     {
-        return new self(
-            name: $task->name()->value(),
-            description: $task->description(),
-            status: $task->status()->value,
-            assignedUserId: $task->assignedUserId(),
-        );
+        $entity = new self();
+        $entity
+            ->setName($task->taskName()->value())
+            ->setDescription($task->taskDescription())
+            ->setAssignedUserId($task->assignedUserId())
+            ->setStatus($task->taskStatus()->value);
+
+        return $entity;
     }
 }
