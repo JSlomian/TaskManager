@@ -1,0 +1,17 @@
+Event:
+    type: object
+    config:
+        fields:
+            id:
+                type: "Int!"
+            aggregateType:
+                type: "String!"
+            aggregateId:
+                type: "Int!"
+            eventType:
+                type: "String!"
+            payload:
+                type: "String!"
+                resolve: "@=value.getPayloadJson()"
+            occurredAt:
+                type: "DateTime!"

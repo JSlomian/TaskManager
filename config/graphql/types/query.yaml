@@ -17,3 +17,14 @@ Query:
                     userId:
                         type: "Int!"
                 resolve: "@=service('graphql.query_resolver').tasksByUser(args['userId'])"
+            events:
+                type: "[Event!]"
+                resolve: "@=service('graphql.query_resolver').events()"
+            eventsForTask:
+                type: "[Event!]"
+                args:
+                    eventType:
+                        type: "String!"
+                    aggregateId:
+                        type: "Int!"
+                resolve: "@=service('graphql.query_resolver').eventsForTask(args)"
